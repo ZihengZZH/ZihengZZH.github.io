@@ -1,5 +1,25 @@
-name: Ziheng Zhang
-markdown: kramdown
-paginate: 10
-paginate_path: "/blogs/page:num/"
+# Dependencies
+markdown:         kramdown
+highlighter:      pygments
 
+# Permalinks
+permalink:        pretty
+
+# Setup
+title:            Ziheng
+tagline:          ''
+description:      ''
+url:              https://zihengzzh.github.io
+baseurl:          /
+
+author:
+  name:           'Ziheng Zhang'
+  url:            https://zihengzzh.github.io
+
+paginate:         5
+
+# Custom vars
+version:          0.0.5
+
+github:
+  repo:           https://github.com/ZihengZZH

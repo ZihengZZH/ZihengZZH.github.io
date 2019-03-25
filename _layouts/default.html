@@ -1,37 +1,15 @@
----
-layout: default
----
-
 <!DOCTYPE html>
-<html>
-    <head>
-        <title>{{page.title}}</title>
-        <!-- link to main stylesheet-->
-        <link rel="stylesheet" type="text/css" href="/css/my-style.css">
-    </head>
+<html lang="en-us">
 
-    <body>
-        <nav>
-            <ul>
-                <li><a href="/">Home</a></li>
-                <li><a href="/about">About Me</a></li>
-                <li><a href="/cv">My CV</a></li>
-                <li><a href="/blogs/">My Blog</a></li>
-            </ul>
-        </nav>
-        <div class="container">
+  {% include head.html %}
 
-        {{ content }}
+  <body>
 
-        </div> <!-- /.container -->
+    {% include sidebar.html %}
 
-        <footer>
-            <ul>
-                <li><a href="zihengzhang1025@gmail.com">Email</a></li>
-                <li><a href="https://github.com/ZihengZZH">GitHub</a></li>
-            </ul>
-        </footer>
+    <div class="content container">
+      {{ content }}
+    </div>
 
-    </body>
-
+  </body>
 </html>

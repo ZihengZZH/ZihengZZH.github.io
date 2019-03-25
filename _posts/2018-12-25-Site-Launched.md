@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Ziheng Zhang, Launches Site"
+title: "Site Launched"
 date: 2018-12-25
 ---
 
