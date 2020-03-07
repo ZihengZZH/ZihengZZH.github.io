@@ -60,9 +60,9 @@ where:
 
 ```
 $ cd /tmp
-$ curl -O https://repo.continuum.io/archive/Anaconda3-5.0.1-Linux-x86_64.sh
-$ sha256sum Anaconda3-5.0.1-Linux-x86_64.sh
-$ bash Anaconda3-5.0.1-Linux-x86_64.sh
+$ curl -O https://repo.anaconda.com/archive/Anaconda3-2019.03-Linux-x86_64.sh
+$ sha256sum Anaconda3-2019.03-Linux-x86_64.sh
+$ bash Anaconda3-2019.03-Linux-x86_64.sh
 ```
 
 remember to add conda bin to PATH and run

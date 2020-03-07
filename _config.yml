@@ -1,6 +1,6 @@
 # Dependencies
 markdown:         kramdown
-highlighter:      pygments
+highlighter:      rouge
 
 # Permalinks
 permalink:        pretty
@@ -11,6 +11,9 @@ tagline:          ''
 description:      ''
 url:              https://zihengzzh.github.io
 baseurl:          /
+about:            
+posts:            
+projects:
 
 author:
   name:           'Ziheng Zhang'
@@ -19,7 +22,5 @@ author:
 paginate:         5
 
 # Custom vars
-version:          0.0.5
+version:          0.1.0
 
-github:
-  repo:           https://github.com/ZihengZZH

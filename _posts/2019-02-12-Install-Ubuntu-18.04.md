@@ -17,7 +17,7 @@ This is the most critical part during my entire work. Because of the conflict of
 
 So, to recover all my important work files, we need to enter the recovery mode. Just enter the recovery mode of any one of the available Linux kernels. After this, the following image will pop up.
 
-![](../_site/res/images/recoverymode.png)
+![](../res/images/recoverymode.png)
 
 
 It is also noticeable that in the recovery mode, all files are read-only and we need the write permission to proceed. 
@@ -28,16 +28,16 @@ Next, enter the ```root``` to drop to root shell prompt, which allows us to acce
 
 Simply injecting the USB drive does not work, we need to manually mount the USB drive. Run the ```fdisk -l``` to display the USB information. Then run the each one of the following commands to mount USB drive (Note the drive format).
 ```
-mount -t vfat /dev/{patition} /media
-mount -t ntfs /dev/{patition} /media
-mount -t /dev/{patition} /media
+$ mount -t vfat /dev/{patition} /media
+$ mount -t ntfs /dev/{patition} /media
+$ mount -t /dev/{patition} /media
 ```
 
 After mounting the external drive, run the following command to move or copy the crucial files to the drive.
 
 ```
-mv  -v {workspace}/* /media/{drive_name}
-cp -v {workspace}/* /media/{drive_name}
+$ mv  -v {workspace}/* /media/{drive_name}
+$ cp -v {workspace}/* /media/{drive_name}
 ```
 ```-v``` outputs information explaining what the command is exactly doing.
 
@@ -61,18 +61,60 @@ With the Upan inserted, reboot the computer to enter the tryout interface of Ubu
 
 ### git
 
-sudo apt update
-sudo apt install git
+```
+$ sudo apt update
+$ sudo apt install git
+```
 
-https://segmentfault.com/a/1190000002645623
+The difference between ```apt``` and ```get-apt``` can refer to this [post](https://www.maketecheasier.com/apt-vs-apt-get-ubuntu/).
+
+Next critical step is to setup the ```git-ssh``` to configure with Github for example.
+
+1. Setup username and email for Git
+```
+$ git config --global user.name "{your_name}"
+$ git config --global user.email "{your_email}"
+```
+2. Generate the keys
+```
+$ ssh-keygen -t rsa -C "{your_email}"
+```
+Two files will be generated: ```id_rsa``` and ```id_rsa.pub```, which corresponds to the private key and the public key.
+
+An **optional** step needs to be done to ensure that ```ssh-agent``` works. ```ssh-agent``` is a management tool to store private keys and we need to add the keys to ```ssh-agent``` if necessary.
+```
+$ ssh-add ~/.ssh/id_rsa
+```
+
+4. Configure ssh on [Github](https://github.com/)
+
+After logging in the Github, copy and paste the content of ```id_rsa.pub``` to the ```Setting -> SSH and GPG keys```, as follows. Note that the end of the public key should be your email that entered during key generation. 
+![](../res/images/sshkeys.png)
+
+5. Test
+```
+$ ssh -T git@github.com
+```
+After running this command, you will see:
+```
+The authenticity of host 'github.com (some_IP)' can't be established.
+RSA key fingerprint is xx:xx:xx:....:xx:xx:xx.
+Are you sure you want to continue connecting (yes/no)? yes
+Hi your_name! You've successfully authenticated, but GitHub does not provide shell access.
+```
+
+Here, all done to setup and configure your git.
+
+
+[Reference](https://segmentfault.com/a/1190000002645623) here.
 
 ### zsh
-
-sudo apt-get update
-sudo apt-get upgrade
-sudo apt-get install zsh
-
+```
+$ apt-get update
+$ apt-get upgrade
+$ apt-get install zsh
 $ sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+```
 
 source code pro
 
@@ -81,8 +123,9 @@ https://ohmyz.sh
 
 powerline font
 
-sudo apt-get install fonts-powerline
-
+```
+apt-get install fonts-powerline
+```
 
 ### chrome
 
@@ -100,12 +143,12 @@ cat /proc/driver/nvidia/version
 nvcc -V
 
 https://www.pugetsystems.com/labs/hpc/How-to-install-CUDA-9-2-on-Ubuntu-18-04-1184/
-
-sudo cp -a /usr/local/cuda-10.0/include/CL /usr/local/include
-sudo cp -a /usr/local/cuda-10.0/lib64/* /usr/lib
-sudo sh -c "echo '/usr/local/lib' >> /etc/ld.so.config"
-sudo ldconfig
-
+```
+$ cp -a /usr/local/cuda-10.0/include/CL /usr/local/include
+$ cp -a /usr/local/cuda-10.0/lib64/* /usr/lib
+$ sh -c "echo '/usr/local/lib' >> /etc/ld.so.config"
+$ ldconfig
+```
 https://zhuanlan.zhihu.com/p/53393267
 
 ### anaconda3 (Python3)
@@ -116,14 +159,14 @@ Also, to zsh, add PATH to ~/.zshrc & source ~/.zshrc
 numpy pandas matplotlib sklearn all built-in
 
 when installing tensorflow, it turned out that tensorflow is not compatiable on Python3.7. So, it is necessary to downgrade from Python 3.7 to Python 3.6.
+```
+$ conda search python
+$ conda install python=3.6.5
 
-conda search python
-conda install python=3.6.5
-
-conda install tensorflow(gpu) 
-conda install keras(gpu)
-conda install pytorch torchvision cudatoolkit=10.0 -c pytorch
-
+$ conda install tensorflow(gpu) 
+$ conda install keras(gpu)
+$ conda install pytorch torchvision cudatoolkit=10.0 -c pytorch
+```
 
 ### VS code
 
@@ -133,10 +176,11 @@ access token
 gist id
 
 zsh terminal font
-cd /usr/share/fonts/truetype/
-sudo git clone https://github.com/powerline/fonts.git
-sudo fc-cache -f -v
-
+```
+$ cd /usr/share/fonts/truetype/
+$ git clone https://github.com/powerline/fonts.git
+$ fc-cache -f -v
+```
 
 https://github.com/powerline/fonts
 
@@ -146,45 +190,50 @@ with julia
 
 
 ### Pycharm & IDEA
+```
+$ tar -zxvf ipycharm-community-xxx.tar.gz -C /opt
+$ cd /opt/pycharm-community-xxx/bin
+$ ./idea.sh
 
-sudo tar -zxvf ipycharm-community-xxx.tar.gz -C /opt
-cd /opt/pycharm-community-xxx/bin
-./idea.sh
-
-sudo tar -zxvf ideaIU-xxx.tar.gz -C /opt
-cd /opt/idea-IC-xxx/bin
-./idea.sh
-
+$ tar -zxvf ideaIU-xxx.tar.gz -C /opt
+$ cd /opt/idea-IC-xxx/bin
+$ ./idea.sh
+```
 
 ###  stacer
 
-sudo add-apt-repository ppa:oguzhaninan/stacer
-sudo apt-get update
-sudo apt-get install stacer
+```
+$ sudo add-apt-repository ppa:oguzhaninan/stacer
+$ sudo apt-get update
+$ sudo apt-get install stacer
+```
+![](../res/images/stacer.png)
 
 https://github.com/oguzhaninan/Stacer
 
 ### Gnome themes
-
-sudo apt-get install gnome-tweak-tool
-sudo apt-get install gnome-shell-extensions
-
-sudo mv <theme_name> /usr/share/themes
+```
+$ apt-get install gnome-tweak-tool
+$ apt-get install gnome-shell-extensions
+```
+```
+$ mv <theme_name> /usr/share/themes
+```
 
 ### Spotify
 
 ```
 # 1. Add the Spotify repository signing keys to be able to verify downloaded packages
-sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 931FF8E79F0876134EDDBDCCA87FF9DF48BF1C90
+apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 931FF8E79F0876134EDDBDCCA87FF9DF48BF1C90
 
 # 2. Add the Spotify repository
 echo deb http://repository.spotify.com stable non-free | sudo tee /etc/apt/sources.list.d/spotify.list
 
 # 3. Update list of available packages
-sudo apt-get update
+apt-get update
 
 # 4. Install Spotify
-sudo apt-get install spotify-client
+apt-get install spotify-client
 ```
 
 https://www.spotify.com/uk/download/linux/

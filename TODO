@@ -4,9 +4,9 @@ Todo:
   ☐ default website theme (CSS design)
     ☐ change content 
     ☐ personalization
-  ☐ default blog style
+  ✔ default blog style @done(19-05-14 16:23)
   ☐ recent blog
-    ☐ reinstall Ubuntu 18.04
+    ✔ reinstall Ubuntu 18.04 @done(19-05-14 16:22)
     ☐ LaTeX cheetsheet
     ☐ Markdown cheetsheet
     ☐ git cheetsheet
